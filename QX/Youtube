@@ -1,0 +1,10 @@
+
+
+
+
+https:\/\/youtubei\.googleapis\.com\/(youtubei\/v1\/(browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting|get_watch))(\?(.*))?$ url script-response-body https://raw.githubusercontent.com/ZZ1124/Rules/refs/heads/main/JS/Youtube.js
+
+https?:\/\/[\w-]+\.googlevideo\.com\/initplayback.+&oad url reject-200
+
+[MITM]
+hostname = %APPEND% *.googlevideo.com, youtubei.googleapis.com
