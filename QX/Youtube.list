@@ -1,6 +1,5 @@
 #!desc=移除开屏广告、移除文章底部和章末广告、移除听书页面广告、移除悬浮部件和底栏多余的福利标签。
 
-[Rule]
 DOMAIN,zlink.ugsdk.cn,REJECT,extended-matching,pre-matching
 DOMAIN,mon.toutiaocloud.net,REJECT,extended-matching,pre-matching
 DOMAIN,lf-normal-gr-sourcecdn.bytegecko.com,REJECT,extended-matching,pre-matching
