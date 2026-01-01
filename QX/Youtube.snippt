@@ -1,6 +1,6 @@
 
-
-
+AND,((DOMAIN-SUFFIX, googlevideo.com), (PROTOCOL, QUIC)),REJECT
+AND,((DOMAIN-SUFFIX, youtubei.googleapis.com), (PROTOCOL, QUIC)),REJECT
 
 https:\/\/youtubei\.googleapis\.com\/(youtubei\/v1\/(browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting|get_watch))(\?(.*))?$ url script-response-body https://raw.githubusercontent.com/ZZ1124/Rules/refs/heads/main/JS/Youtube.js
 
