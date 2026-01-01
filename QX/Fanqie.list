@@ -1,36 +1,36 @@
 #!desc=移除开屏广告、移除文章底部和章末广告、移除听书页面广告、移除悬浮部件和底栏多余的福利标签。
 
-DOMAIN,zlink.ugsdk.cn,REJECT,extended-matching,pre-matching
-DOMAIN,mon.toutiaocloud.net,REJECT,extended-matching,pre-matching
-DOMAIN,lf-normal-gr-sourcecdn.bytegecko.com,REJECT,extended-matching,pre-matching
-DOMAIN,lf-webcast-gr-sourcecdn.bytegecko.com,REJECT,extended-matching,pre-matching
-DOMAIN,p3-developer.bytemaimg.com,REJECT,extended-matching,pre-matching
-DOMAIN,webcast-open.douyin.com,REJECT,extended-matching,pre-matching
-DOMAIN,p11-webcast-sign.douyinpic.com,REJECT,extended-matching,pre-matching
-DOMAIN,p3-webcast-sign.douyinpic.com,REJECT,extended-matching,pre-matching
-DOMAIN,log3-applog.fqnovel.com,REJECT,extended-matching,pre-matching
-DOMAIN,log5-applog.fqnovel.com,REJECT,extended-matching,pre-matching
-DOMAIN,mon11-misc-lq.fqnovel.com,REJECT,extended-matching,pre-matching
-DOMAIN,mon11-misc.fqnovel.com,REJECT,extended-matching,pre-matching
-DOMAIN,mon3-misc.fqnovel.com,REJECT,extended-matching,pre-matching
-DOMAIN,rtlog3-applog.fqnovel.com,REJECT,extended-matching,pre-matching
-DOMAIN,rtlog5-applog.fqnovel.com,REJECT,extended-matching,pre-matching
-DOMAIN,effect.snssdk.com,REJECT,extended-matching,pre-matching
-DOMAIN,i.snssdk.com,REJECT,extended-matching,pre-matching
-DOMAIN,is-lq.snssdk.com,REJECT,extended-matching,pre-matching
-DOMAIN,is.snssdk.com,REJECT,extended-matching,pre-matching
-DOMAIN,security.snssdk.com,REJECT,extended-matching,pre-matching
-DOMAIN,vas.snssdk.com,REJECT,extended-matching,pre-matching
-DOMAIN,mon.toutiaocloud.com,REJECT,extended-matching,pre-matching
-DOMAIN,abtest3-misc.zijieapi.com,REJECT,extended-matching,pre-matching
-DOMAIN,ads3-normal.zijieapi.com,REJECT,extended-matching,pre-matching
-DOMAIN,ads5-normal.zijieapi.com,REJECT,extended-matching,pre-matching
-DOMAIN,feedback-c.zijieapi.com,REJECT,extended-matching,pre-matching
-DOMAIN,gecko3.zijieapi.com,REJECT,extended-matching,pre-matching
-DOMAIN,gecko5.zijieapi.com,REJECT,extended-matching,pre-matching
-DOMAIN,ma.zijieapi.com,REJECT,extended-matching,pre-matching
-DOMAIN,minigame3-normal.zijieapi.com,REJECT,extended-matching,pre-matching
-DOMAIN,minigame5-normal.zijieapi.com,REJECT,extended-matching,pre-matching
-DOMAIN,mssdk.zijieapi.com,REJECT,extended-matching,pre-matching
-DOMAIN,timon.zijieapi.com,REJECT,extended-matching,pre-matching
-DOMAIN,vcs.zijieapi.com,REJECT,extended-matching,pre-matching
+# 番茄小说去广告分流规则（Quantumult X .list 版）
+
+HOST-SUFFIX, byteimg.com, DIRECT
+HOST, p6-ad-sign.byteimg.com, REJECT
+HOST, p9-ad-sign.byteimg.com, REJECT
+HOST, i.snssdk.com, REJECT
+HOST, i-lq.snssdk.com, REJECT
+HOST, dig.bdurl.net, REJECT
+HOST-KEYWORD, zijieapi, REJECT
+HOST, activity-ag.awemeughun.com, REJECT
+HOST, mcs.snssdk.com, REJECT
+HOST, tnc3-alisc1.snssdk.com, REJECT
+HOST, security-lq.snssdk.com, REJECT
+HOST, tnc3-aliec2.snssdk.com, REJECT
+HOST, is.snssdk.com, REJECT
+HOST, v6-novelapp.ixigua.com, REJECT
+HOST, novelapp.ixigua.com, REJECT
+HOST, default.ixigua.com, REJECT
+HOST, msync-im1-vip6-std.easemob.com, REJECT
+HOST, apd-pcdnwxlogin.teg.tencent-cloud.net, REJECT
+HOST, api.iegadp.qq.com, REJECT
+HOST, sf3-ttcdn-tos.pstatp.com, REJECT
+HOST-SUFFIX, pglstatp-toutiao.com, REJECT
+HOST-SUFFIX, byteorge.com, REJECT
+HOST-SUFFIX, bytegoofy.com, REJECT
+HOST-SUFFIX, bytedance.com, REJECT
+
+IP-CIDR, 49.71.37.101/32, REJECT, no-resolve
+IP-CIDR, 117.71.105.23/32, REJECT, no-resolve
+IP-CIDR, 218.94.207.205/32, REJECT, no-resolve
+IP-CIDR, 117.92.229.188/32, REJECT, no-resolve
+IP-CIDR, 101.36.166.16/32, REJECT, no-resolve
+IP-CIDR, 180.96.2.114/32, REJECT, no-resolve
+
