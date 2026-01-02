@@ -1,5 +1,23 @@
-// Quantumult X Script: 分笔记/粉笔 首页轮播图伪造响应（返回妹子图）
-// 作者：网络整理，适用于 QuanX
+// 粉笔首页多张高清妹子图轮播（2026永久版，12张） - Quantumult X 专用
+
+const images = [
+"https://www.10wallpaper.com/wallpaper/1200x900/1608/Asian_girl_hat-Beauty_poster_wallpaper_1200x900.jpg"
+];
+
+const items = images.map((url, index) => ({
+  id: 40000 + index,
+  courseSetId: 2,
+  content: "每日美图",
+  imageUrl: url,
+  url: null,
+  redirectType: 1,
+  ordinal: index + 1,
+  createdTime: Date.now(),
+  startTime: Date.now() - 3600000,
+  endTime: 4070880000000,
+  type: 0,
+  bizType: 4
+}));
 
 const response = {
   code: 1,
@@ -7,29 +25,14 @@ const response = {
   data: {
     positionResourceType: 1,
     payload: {
-      items: [
-        {
-          id: 17868,
-          courseSetId: 2,
-          content: "妹子图",
-          imageUrl: "https://i.im.ge/2025/11/24/4DrVp0.mm.png",
-          url: null,
-          redirectType: 1,
-          ordinal: 8,
-          createdTime: 1746799144383,
-          startTime: 1759850171000,
-          endTime: 4070880000000,
-          type: 0,
-          bizType: 4
-        }
-      ],
-      count: 1
+      items: items,
+      count: items.length
     }
   }
 };
 
 $done({
-  status: 200,
-  headers: { "Content-Type": "application/json" },
+  status: "200",
+  headers: { "Content-Type": "application/json;charset=utf-8" },
   body: JSON.stringify(response)
 });
