@@ -1,0 +1,14 @@
+# 2026.1.2 部分解锁premium,音质不能设置为超高(建议登录后再打开脚本,重启app等待脚本生效)
+# 软件版本 9.0.42.587
+# 仓库地址 https://github.com/ZZ1124/Rules
+# 功能: 1.去除播放广告 2.歌手/专辑列表正常展示 3.去除随机播放
+
+[Rewrite]
+^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/user-customization-service\/v1\/customize$ header-del if-none-match
+
+[Mitm]
+hostname =spclient.wg.spotify.com, *spclient.spotify.com
+
+[Script]
+http-request ^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/ script-path=https://github.com/ZZ1124/Rules/raw/refs/heads/main/JS/Spotify-json.js, timeout=10, tag=spotifyJson
+http-response ^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$ script-path=https://github.com/ZZ1124/Rules/raw/refs/heads/main/JS/Spotify-proto.js, requires-body=true, binary-body-mode=true, timeout=10, tag=spotifyProto
