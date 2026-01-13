@@ -28,5 +28,5 @@ obj = {
 };
 
 $done({
-  body: JSON.stringify(body)
+  body: JSON.stringify(obj)
 });
