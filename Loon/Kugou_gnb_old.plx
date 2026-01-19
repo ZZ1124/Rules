@@ -1,6 +1,9 @@
-#2.4.5 宝藏频道 需卸载重新安装优化
-#author ZZ1124
+#!Kugou_gnb_old
+#!desc=宝藏频道 需卸载重新安装优化
+#!author=@ZZ1124
+#!icon=
 
+[Rewrite]
 ^https:\/\/gateway\.kugou\.com\/youth\/api\/topic\/v1\/get_new_topic_list url reject-dict
 #搜索栏下 大家都在听
 
@@ -43,7 +46,7 @@
 ^http:\/\/complexsearch\.kugou\.com\/v1\/search\/album url jsonjq-response-body .data.lists = []
 #搜索 专辑
 
-#^https:\/\/usercenter\.kugou\.com\/v3\/get_my_info url script-response-body https://raw.githubusercontent.com/ZZ1124/Rules/main/JS/kugou_privacy.js
+#^https:\/\/usercenter\.kugou\.com\/v3\/get_my_info url surl reject-dict
 
 ########################################################
 #^https:\/\/gateway\.kugou\.com\/youth\/api\/channel\/v1\/get_user_song url reject-dict
@@ -54,7 +57,7 @@
 #^http:\/\/config\.mobile\.kugou\.com\/v2\/appconfig url reject-dict
 #^https:\/\/gateway\.kugou\.com\/youth\/api\/operation\/v1\/get_discovery_operation url reject-dict
 #^http:\/\/d\.kugou\.com\/v2\/gen url reject-dict
-#^https?://gateway\.kugou\.com/youth/v1/experiment/get_params url script-response-body https://raw.githubusercontent.com/ZZ1124/Rules/main/JS/kugou_youth_exp_noad.js
+#^https?://gateway\.kugou\.com/youth/v1/experiment/get_params url reject-dict
 ########################################################
-
+[MITM]
 hostname = gateway.kugou.com, newsong.kugou.com, usercenter.kugou.com, complexsearch.kugou.com, msearchcdn.kugou.com
