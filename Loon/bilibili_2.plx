@@ -1,0 +1,75 @@
+hostname = -broadcast.chat.bilibili.com, -*cdn*.biliapi.net, -*tracker*.biliapi.net, app.bilibili.com, api.live.bilibili.com, *.bilibili.com, *.bilibili.*, grpc.biliapi.net,*biliapi.net
+
+# 去广告
+^https?:\/\/app\.bilibili\.com\/x\/resource\/ip url reject
+^https?:\/\/api\.bilibili\.com\/pgc\/activity\/deliver\/material\/receive url reject-dict
+^https?:\/\/(app\.bilibili\.com|grpc\.biliapi\.net)\/bilibili\.app\.interface\.v1\.Search\/Default url reject
+^https://app.bilibili.com/x/v2/splash/show url reject-dict
+^https://app.bilibili.com/x/v2/search/defaultwords url reject-dict
+^https?:\/\/api\.bilibili\.com\/x\/vip\/ads\/material\/report url reject-dict
+^https://api.bilibili.com/pgc/season/player/cards url reject-dict
+^https?:\/\/manga\.bilibili\.com\/twirp\/comic\.v\d\.Comic\/(Flash|ListFlash|GetActivityTab) url reject-dict
+
+
+
+^https?:\/\/api\.bili(api|bili)\.(net|com)\/pgc\/season\/app\/related\/recommend\? url script-response-body https://raw.githubusercontent.com/Moli-X/Resources/main/Script/Bilibili/bilibili_json.js
+^https?:\/\/api\.live\.bilibili\.com\/xlive\/app-interface\/v2\/index\/feed url script-response-body https://raw.githubusercontent.com/Moli-X/Resources/main/Script/Bilibili/bilibili_json.js
+^https?:\/\/api\.live\.bilibili\.com\/xlive\/e-commerce-interface\/v\d\/ecommerce-user\/get_shopping_info\? url script-response-body https://raw.githubusercontent.com/Moli-X/Resources/main/Script/Bilibili/bilibili_json.js
+^https?:\/\/app\.bilibili\.com\/x\/resource\/top\/activity url script-response-body https://raw.githubusercontent.com/Moli-X/Resources/main/Script/Bilibili/bilibili_json.js
+^https?:\/\/api\.(bilibili|biliapi)\.(com|net)\/pgc\/page\/cinema\/tab\? url script-response-body https://raw.githubusercontent.com/Moli-X/Resources/main/Script/Bilibili/bilibili_json.js
+^https:\/\/app\.bilibili\.com\/x\/v2\/splash\/list url script-response-body https://raw.githubusercontent.com/Moli-X/Resources/main/Script/Bilibili/bilibili_json.js
+^https://app.bilibili.com/x/v2/search/square url script-response-body https://raw.githubusercontent.com/Moli-X/Resources/main/Script/Bilibili/bilibili_json.js
+^https?:\/\/app\.bilibili\.com\/x\/v2\/feed\/index url script-response-body https://raw.githubusercontent.com/Moli-X/Resources/main/Script/Bilibili/bilibili_json.js
+^https?:\/\/api\.(bilibili|biliapi)\.(com|net)\/pgc\/page\/bangumi url script-response-body https://raw.githubusercontent.com/Moli-X/Resources/main/Script/Bilibili/bilibili_json.js
+^https?:\/\/api\.live\.bilibili\.com\/xlive\/app-room\/v1\/index\/getInfoByRoom url script-response-body https://raw.githubusercontent.com/Moli-X/Resources/main/Script/Bilibili/bilibili_json.js
+^https?:\/\/(app\.bilibili\.com|grpc\.biliapi\.net)\/bilibili\.app\.dynamic\.v2\.Dynamic\/DynAll$ url script-response-body https://raw.githubusercontent.com/Moli-X/Resources/main/Script/Bilibili/TPBilibili.js
+
+
+# 1080P高码率+4K画质[番剧和影视除外]
+^https?:\/\/app\.bilibili\.com\/x\/v2\/account\/myinfo\? url script-response-body https://raw.githubusercontent.com/Moli-X/Resources/main/Script/Bilibili/bilibili_json.js
+# 启动时开启直连模式
+^https?:\/\/app\.bilibili\.com\/x\/resource\/domain url script-response-body https://raw.githubusercontent.com/Moli-X/Resources/main/Script/Bilibili/ZLBilibili.js
+# 繁体CC字幕转中文简体
+^https?:\/\/i.\.hdslb\.com\/bfs\/subtitle\/.+\.json$ url script-response-body https://raw.githubusercontent.com/Moli-X/Resources/main/Script/Bilibili/ZMBilibili.js
+
+
+################注释留存部分###################
+# 页面处理
+# ^https?:\/\/app\.bilibili\.com\/x\/v2\/account\/mine url script-response-body https://raw.githubusercontent.com/Moli-X/Resources/main/Script/Bilibili/bilibili_json.js
+# 去除统一设置的皮肤
+# ^https?:\/\/app\.bilibili\.com\/x\/resource\/show\/skin\? url script-response-body https://raw.githubusercontent.com/Moli-X/Resources/main/Script/Bilibili/bilibili_json.js
+# 标签页处理
+# ^https?:\/\/app\.bilibili\.com\/x\/resource\/show\/tab url script-response-body https://raw.githubusercontent.com/Moli-X/Resources/main/Script/Bilibili/bilibili_json.js
+# 手机端简介打不开有[适配ipad端]
+# ^https?:\/\/(app\.bilibili\.com|grpc\.biliapi\.net)\/bilibili\.app\.view\.v1\.View\/View$ url script-response-body https://raw.githubusercontent.com/Moli-X/Resources/main/Script/Bilibili/TPBilibili.js
+
+
+#!name=BiliBili每日等级任务
+#!desc=定时任务及Cookie获取
+#!author= MartinsKing（@ClydeTime）
+#!homepage= https://github.com/ClydeTime/BiliBili/tree/master
+#!icon=https://raw.githubusercontent.com/ClydeTime/BiliBili/main/database/icon_Avatar.png
+#!category= MK
+# 现将获取cookie与定时任务合并为一个模块
+# 使用APP获取cookie,保持B站Cookie(APP)开启,如检测到cookie变更会自动更新,解决cookie经常过期的问题(cookie仍有效不提醒更新)
+# 使用扫码获取cookie,保持B站Cookie(扫码)开启,打开APP后,根据推送提示操作获取cookie,此方式cookie存活时间较长,使用后需关闭脚本,cookie失效后再次打开即可
+# 用户可选择自行开启或关闭,两种获取方式不可兼用
+# 大会员用户可选择开启观看剧集大积分定时任务,以此获取观看剧集大积分,非大会员用户忽略即可
+# 任务奖励：经验值/硬币/大会员积分/年度会员领取B币等
+# ================ Boxjs订阅 ================
+# 订阅地址：https://raw.githubusercontent.com/ClydeTime/BiliBili/main/boxjs/BiliBili.boxjs.json
+# 更新时间：2025-05-15
+
+#下方定时任务复制到本地配置，可以看到ui
+[task_local]
+# B站每日等级任务
+55 8 * * * https://raw.githubusercontent.com/ClydeTime/BiliBili/main/js/BiliBiliDailyBonus.js, tag=B站每日等级任务, img-url=https://raw.githubusercontent.com/HuiDoY/Icon/main/mini/Color/bilibili.png, enabled=true
+
+# B站观看剧集大积分
+55 8 * * * https://raw.githubusercontent.com/ClydeTime/BiliBili/main/js/BiliBiliDailyBonus.js, tag=B站观看剧集大积分, img-url=https://raw.githubusercontent.com/HuiDoY/Icon/main/mini/Color/bilibili.png, enabled=false
+
+
+# B站Cookie(扫码)
+#^https?:\/\/app\.bilibili\.com\/x\/resource\/fingerprint\? url script-response-body https://raw.githubusercontent.com/ClydeTime/BiliBili/main/js/BiliBiliDailyBonus.js
+# B站Cookie(APP)
+^https?:\/\/app\.bilibili\.com\/x\/resource\/fingerprint\? url script-request-header https://raw.githubusercontent.com/ClydeTime/BiliBili/main/js/BiliBiliDailyBonus.js
