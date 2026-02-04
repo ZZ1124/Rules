@@ -42,21 +42,3 @@ hostname = -broadcast.chat.bilibili.com, -*cdn*.biliapi.net, -*tracker*.biliapi.
 # ^https?:\/\/app\.bilibili\.com\/x\/resource\/show\/tab url script-response-body https://raw.githubusercontent.com/Moli-X/Resources/main/Script/Bilibili/bilibili_json.js
 # 手机端简介打不开有[适配ipad端]
 # ^https?:\/\/(app\.bilibili\.com|grpc\.biliapi\.net)\/bilibili\.app\.view\.v1\.View\/View$ url script-response-body https://raw.githubusercontent.com/Moli-X/Resources/main/Script/Bilibili/TPBilibili.js
-
-
-[Argument]
-扫码Cookie = switch,false,tag=[开关] 扫码Cookie,desc=是否启用此处修改
-RunTime = input,"30 7 * * *",tag=自定义执行时间,desc=可手动更改脚本运行时间，默认早上7点半
-APPCookie = switch,true,tag=[开关] APPCookie,desc=是否启用此处修改
-bigPoint = switch,false,tag=[开关] 观看剧集大积分,desc=是否启用此处修改
-
-[Script]
-# BiliBili每日等级任务
-cron {RunTime} script-path=https://raw.githubusercontent.com/ClydeTime/BiliBili/main/js/BiliBiliDailyBonus.js, tag=B站每日等级任务, timeout=15
-
-cron "41 7 * * *" script-path=https://raw.githubusercontent.com/ClydeTime/BiliBili/main/js/BiliBiliDailyBonus.js, tag=B站观看剧集大积分, enable={bigPoint}, timeout=15
-
-http-response ^https?:\/\/app\.bilibili\.com\/x\/resource\/fingerprint\? script-path=https://raw.githubusercontent.com/ClydeTime/BiliBili/main/js/BiliBiliDailyBonus.js, tag=B站Cookie(扫码), timeout=30, enable={扫码Cookie}
-
-http-request ^https?:\/\/app\.bilibili\.com\/x\/resource\/fingerprint\? script-path=https://raw.githubusercontent.com/ClydeTime/BiliBili/main/js/BiliBiliDailyBonus.js, tag=B站Cookie(APP), enable={APPCookie}
-
