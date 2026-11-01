@@ -284,6 +284,9 @@ async function fetchFlowDetail(ctx, cookie) {
     throw new Error(`API 返回异常：${data?.code || 'unknown'}`);
   }
 
+  // 打印完整的明细数据结构，用于核对字段
+  console.log('[ChinaUnicom] 流量明细原始数据: ' + JSON.stringify(data));
+
   return data;
 }
 
