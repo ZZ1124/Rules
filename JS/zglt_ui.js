@@ -308,6 +308,24 @@ function isDirectionalFlowItem(item, resourceName) {
   );
 }
 
+/**
+ * 校验并过滤掉语音、短信等非流量项，避免语音分钟数被当成流量累加
+ */
+function isNonFlowItem(item, res) {
+  const unit = String(item.unit || item.measureUnit || '').trim();
+  const name = String(item.addUpItemName || item.feePolicyName || '').trim();
+  const rType = String(res.type || item.resourceType || item.elemType || '').toUpperCase();
+
+  // 1. 单位包含分钟、分、次、条、元，或名称包含语音/通话，一律按非流量处理
+  if (/分钟|分|次|条|元|min|语音|通话|主叫/i.test(unit + name)) return true;
+  // 2. 根据资源类型标识过滤语音/短信标识
+  if (rType.includes('VOICE') || rType.includes('SMS') || rType === '1' || rType === '2') {
+    if (!/MB|GB|KB|流量/i.test(unit + name)) return true;
+  }
+
+  return false;
+}
+
 function parseFlowDetail(data) {
   let generalRemain = 0;
   let directionalRemain = 0;
@@ -315,6 +333,7 @@ function parseFlowDetail(data) {
   let directionalTotal = 0;
   let generalUsed = 0;
   let directionalUsed = 0;
+  const debugItems = [];
 
   for (const key of Object.keys(FLOW_RESOURCE_NAMES)) {
     const resourceName = FLOW_RESOURCE_NAMES[key];
@@ -326,10 +345,20 @@ function parseFlowDetail(data) {
       if (!Array.isArray(details)) continue;
 
       for (const item of details) {
-        const directional = isDirectionalFlowItem(item, resourceName);
+        const unit = String(item.unit || item.measureUnit || '');
+        const itemName = String(item.addUpItemName || item.feePolicyName || '');
         const remain = Math.max(0, parseFloat(item.remain) || 0);
         const total = Math.max(0, parseFloat(item.total) || 0);
         const used = Math.max(0, parseFloat(item.use) || 0);
+
+        debugItems.push({ name: itemName, unit, total, remain, used });
+
+        // 核心修复：如果是语音或非流量包，直接跳过，不参与流量累加！
+        if (isNonFlowItem(item, res)) {
+          continue;
+        }
+
+        const directional = isDirectionalFlowItem(item, resourceName);
 
         if (directional) {
           directionalRemain += remain;
@@ -343,6 +372,9 @@ function parseFlowDetail(data) {
       }
     }
   }
+
+  // 打印日志，可在 Egern 中查看过滤明细
+  console.log('[ChinaUnicom] 流量明细解析过滤检查: ' + JSON.stringify(debugItems));
 
   return {
     generalRemain,
